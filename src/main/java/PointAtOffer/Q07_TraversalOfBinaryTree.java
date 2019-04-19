@@ -95,16 +95,15 @@ public class Q07_TraversalOfBinaryTree {
         if (node == null) return list;
 
         Stack<TreeNode<Integer>> stack = new Stack<>();
-        TreeNode<Integer> curr = node;
+        TreeNode<Integer> curr;
 
-        while (curr != null || !stack.isEmpty()) {
-            if (curr != null) {
-                stack.push(curr);
-                list.addFirst(curr.val);  // Reverse the process of post-order
-                curr = curr.right;        // Reverse the process of post-order
-            } else {
-                curr = stack.pop().left;  // Reverse the process of post-order
-            }
+        stack.push(node);
+        while (!stack.isEmpty()) {
+            curr = stack.pop();
+            list.addFirst(curr.val);
+
+            if (curr.left != null) stack.push(curr.left);
+            if (curr.right != null) stack.push(curr.right);
         }
         return list;
     }
