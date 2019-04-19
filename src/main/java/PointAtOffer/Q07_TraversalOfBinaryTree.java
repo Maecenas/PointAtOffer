@@ -5,6 +5,7 @@ import PointAtOffer.utils.TreeNode;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -107,4 +108,26 @@ public class Q07_TraversalOfBinaryTree {
         }
         return list;
     }
+
+    /**
+     * BFS using queue
+     */
+    public static List<Integer> levelorder(TreeNode<Integer> node) {
+        List<Integer> list = new LinkedList<>();
+        if (node == null) return list;
+
+        Queue<TreeNode<Integer>> q = new LinkedList<>();
+        TreeNode<Integer> curr;
+
+        q.offer(node);
+        while (!q.isEmpty()) {
+            curr = q.poll();
+            list.add(curr.val);
+
+            if (curr.left != null) q.offer(curr.left);
+            if (curr.right != null) q.offer(curr.right);
+        }
+        return list;
+    }
+
 }
