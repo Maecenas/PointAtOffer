@@ -2,11 +2,7 @@ package PointAtOffer;
 
 import PointAtOffer.utils.TreeNode;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Recursive/Iterative Pre- /In- /Post-order and Level-order Tree Traversal
@@ -33,9 +29,9 @@ public class Q07_TraversalOfBinaryTree {
         List<Integer> list = new ArrayList<>();
         if (node == null) return list;
 
-        list.addAll(preorderRecursively(node.left));
+        list.addAll(inorderRecursively(node.left));
         list.add(node.val);
-        list.addAll(preorderRecursively(node.right));
+        list.addAll(inorderRecursively(node.right));
         return list;
     }
 
@@ -46,8 +42,8 @@ public class Q07_TraversalOfBinaryTree {
         List<Integer> list = new ArrayList<>();
         if (node == null) return list;
 
-        list.addAll(preorderRecursively(node.left));
-        list.addAll(preorderRecursively(node.right));
+        list.addAll(postorderRecursively(node.left));
+        list.addAll(postorderRecursively(node.right));
         list.add(node.val);
         return list;
     }
