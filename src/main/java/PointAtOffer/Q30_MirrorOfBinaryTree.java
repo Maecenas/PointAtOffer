@@ -8,7 +8,7 @@ import java.util.Queue;
 public class Q30_MirrorOfBinaryTree {
 
     public static void mirrorRecursively(TreeNode root) {
-        if (root == null || root.left == null || root.right == null) return;
+        if (root == null || (root.left == null && root.right == null)) return;
 
         swap(root);
         mirrorRecursively(root.left);
