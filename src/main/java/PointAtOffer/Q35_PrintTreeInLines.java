@@ -9,22 +9,22 @@ import java.util.Queue;
 
 public class Q35_PrintTreeInLines {
 
-    public static List<List<Object>> print(TreeNode<Object> root) {
-        List<List<Object>> res = new ArrayList<>();
+    public static List<List<?>> print(TreeNode<?> root) {
+        List<List<?>> res = new ArrayList<>();
         if (root == null) return res;
-        Queue<TreeNode<Object>> q = new LinkedList<>();
+        Queue<TreeNode<?>> q = new LinkedList<>();
         q.offer(root);
-        TreeNode<Object> node;
+        TreeNode<?> node;
         while (!q.isEmpty()) {
             List<Object> list = new ArrayList<>();
             for (int size = q.size(); size > 0; size--) {
                 node = q.poll();
-                assert node != null;
+                if (node == null) continue;
                 list.add(node.val);
-                if (node.left != null) q.offer(node.left);
-                if (node.right != null) q.offer(node.right);
+                q.offer(node.left);
+                q.offer(node.right);
             }
-            res.add(list);
+            if (!list.isEmpty()) res.add(list);
         }
         return res;
     }
