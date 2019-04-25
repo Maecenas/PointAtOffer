@@ -1,28 +1,31 @@
 package PointAtOffer;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 public class Q42_StringPermutation {
 
     public static List<String> permutation(String str) {
-        if (str == null || str.length() == 0) return new ArrayList<>(0);
+        ArrayList<String> res = new ArrayList<>();
+        if (str == null || str.length() == 0) return res;
 
-        Set<String> res = new HashSet<>();
         char[] chars = str.toCharArray();
+        // No duplicate char
+        Arrays.sort(chars);
         backtracking(chars, res, new boolean[chars.length], new StringBuilder());
-        return new ArrayList<>(res);
+        return res;
     }
 
-    private static void backtracking(final char[] chars, final Set<String> res, final boolean[] marked, StringBuilder str) {
+    private static void backtracking(final char[] chars, final List<String> res, final boolean[] marked, StringBuilder str) {
         if (str.length() == chars.length) {
             res.add(str.toString());
             return;
         }
         for (int i = 0; i < chars.length; i++) {
             if (marked[i]) continue;
+            // No duplicate char
+            if (i != 0 && chars[i] == chars[i - 1] && !marked[i - 1]) continue;
             marked[i] = true;
             str.append(chars[i]);
             backtracking(chars, res, marked, str);
