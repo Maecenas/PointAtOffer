@@ -7,32 +7,38 @@ public class Q47_StreamMedian {
 
     private static PriorityQueue<Double> left = new PriorityQueue<>();
     private static PriorityQueue<Double> right = new PriorityQueue<>(Comparator.reverseOrder());
-    private static int N = 0;
+    private static boolean isInputEven = true;
 
     public void add(double val) {
-        if ((N & 0x1) == 0x0) {
+        if (isInputEven) {
             // even, add to left
             right.add(val);
             left.add(right.poll());
+            // release memory
+            if (left.size() > 2) {
+                left.poll();
+                right.poll();
+            }
         } else {
             // odd, add to right
             left.add(val);
             right.add(left.poll());
+            // release memory
+            if (left.size() > 1) {
+                left.poll();
+                right.poll();
+            }
         }
-        N++;
+        isInputEven = !isInputEven;
     }
 
     public double getMedian() {
-        if ((N & 0x1) == 0x0) {
+        if (isInputEven) {
             // even
             return right.peek() / 2.0 + left.peek() / 2.0;
         } else {
             // odd
             return left.peek();
         }
-    }
-
-    public boolean isEmpty() {
-        return N == 0;
     }
 }
