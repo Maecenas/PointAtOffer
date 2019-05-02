@@ -6,7 +6,11 @@ public class Q19_Print1ToMaxOfNDigits {
         if (num <= 0) return;
 
         StringBuilder number = new StringBuilder(num);
-        number.append("0".repeat(num));
+        // Since JDK 11
+        // number.append("0".repeat(num));
+        for (int i = 0; i < num; i++) {
+            number.append("0");
+        }
         while (increment(number)) {
             printNumber(number);
         }
