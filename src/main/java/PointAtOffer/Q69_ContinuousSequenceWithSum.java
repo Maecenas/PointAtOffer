@@ -5,12 +5,15 @@ import java.util.List;
 
 public class Q69_ContinuousSequenceWithSum {
 
+    /**
+     * Sliding window
+     */
     public static List<List<Integer>> findContinuousSequence(int sum) {
         List<List<Integer>> res = new ArrayList<>();
         if (sum < 3) return res;
 
         int lo = 1, hi = 2, curr = 3;
-        while (hi < sum) {
+        while (hi <= (sum + 1) >> 1) {
             if (curr > sum) {
                 curr -= lo;
                 lo++;
@@ -20,8 +23,9 @@ public class Q69_ContinuousSequenceWithSum {
             } else {
                 // curr == sum
                 ArrayList<Integer> list = new ArrayList<>();
-                for (int i = lo; i <= hi; i++)
+                for (int i = lo; i <= hi; i++) {
                     list.add(i);
+                }
                 res.add(list);
                 curr -= lo;
                 lo++;
