@@ -20,7 +20,7 @@ public class Q70_ReverseWordsInSentence {
         return String.valueOf(chars);
     }
 
-    private static void reverse(char[] chars, int start, int end) {
+    public static void reverse(char[] chars, int start, int end) {
         while (start < end) {
             swap(chars, start++, end--);
         }
