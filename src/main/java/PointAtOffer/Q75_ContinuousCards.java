@@ -1,5 +1,7 @@
 package PointAtOffer;
 
+import java.util.Arrays;
+
 public class Q75_ContinuousCards {
 
     private static final int K = 5;
@@ -32,5 +34,25 @@ public class Q75_ContinuousCards {
             }
         }
         return true;
+    }
+
+    public static boolean isContinuous2(int[] nums) {
+        if (nums == null || nums.length != 5) return false;
+
+        Arrays.sort(nums);
+
+        int king = 0;
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] == 0) {
+                king++;
+            } else {
+                if (nums[i + 1] == nums[i]) {
+                    return false;
+                }
+                king -= (nums[i + 1] - nums[i] - 1);
+            }
+        }
+        // king > 0 when is used for prefix padding
+        return king >= 0;
     }
 }
