@@ -53,4 +53,18 @@ public class Q83_LowestCommonAncestorInTree {
         }
         return l1;
     }
+
+    /**
+     * Searching lowest Common Ancestor in a common binary tree
+     */
+    public static TreeNode<? extends Comparable> lowestCommonAncestorRecursively(
+            TreeNode<? extends Comparable> root,
+            final TreeNode<? extends Comparable> p,
+            final TreeNode<? extends Comparable> q) {
+        if (root == null || root == p || root == q) return root;
+
+        TreeNode<?> left = lowestCommonAncestorRecursively(root.left, p, q);
+        TreeNode<?> right = lowestCommonAncestorRecursively(root.right, p, q);
+        return right == null ? left : left == null ? right : root;
+    }
 }
