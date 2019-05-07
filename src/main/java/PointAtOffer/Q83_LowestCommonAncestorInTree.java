@@ -24,4 +24,33 @@ public class Q83_LowestCommonAncestorInTree {
             return root;
         }
     }
+
+    static class TreeNodeWithParent<T extends Comparable> {
+
+        T val;
+        TreeNodeWithParent<T> parent;
+        TreeNodeWithParent<T> left;
+        TreeNodeWithParent<T> right;
+
+        public TreeNodeWithParent(T val, TreeNodeWithParent<T> parent) {
+            this.val = val;
+            this.parent = parent;
+        }
+    }
+
+    /**
+     * See also {@code Q59_FirstCommonNodesInLists}
+     */
+    public static TreeNodeWithParent<? extends Comparable> lowestCommonAncestorInBSTWithParent(
+            TreeNodeWithParent<? extends Comparable> p,
+            TreeNodeWithParent<? extends Comparable> q) {
+        if (q == null || p == null) return null;
+
+        TreeNodeWithParent l1 = p, l2 = q;
+        while (l1.val.compareTo(l2.val) != 0) {
+            l1 = (l1.parent == null) ? q : l1.parent;
+            l2 = (l2.parent == null) ? p : l2.parent;
+        }
+        return l1;
+    }
 }
