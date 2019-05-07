@@ -2,6 +2,9 @@ package PointAtOffer;
 
 import PointAtOffer.utils.TreeNode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Given two TreeNode p and q, find the lowest common ancestor
  */
@@ -66,5 +69,36 @@ public class Q83_LowestCommonAncestorInTree {
         TreeNode<?> left = lowestCommonAncestorRecursively(root.left, p, q);
         TreeNode<?> right = lowestCommonAncestorRecursively(root.right, p, q);
         return right == null ? left : left == null ? right : root;
+    }
+
+    /**
+     * See also <a>https://github.com/Maecenas/Algorithms-algs4-cos226-Princeton-Coursera#wordnet</a>
+     */
+    public static TreeNode lowestCommonAncestorIteratively(
+            TreeNode<? extends Comparable> root,
+            final TreeNode<? extends Comparable> p,
+            final TreeNode<? extends Comparable> q) {
+        if (root == null || root == p || root == q) return root;
+
+        List<TreeNode> path1 = new ArrayList<>(), path2 = new ArrayList<>();
+        getPath(root, p, path1);
+        getPath(root, q, path2);
+        TreeNode parent = null;
+
+        for (int i = 0; i < path1.size() && i < path2.size(); i++) {
+            if (path1.get(i) != path2.get(i)) break;
+            parent = path1.get(i);
+        }
+        return parent;
+    }
+
+    private static boolean getPath(TreeNode root, TreeNode node, List<TreeNode> path) {
+        if (root == node) return true;
+
+        path.add(root);
+        if (root.left != null && getPath(root.left, node, path)) return true;
+        if (root.right != null && getPath(root.right, node, path)) return true;
+        path.remove(path.size() - 1);
+        return false;
     }
 }
