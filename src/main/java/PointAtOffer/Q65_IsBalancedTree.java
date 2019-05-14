@@ -7,7 +7,7 @@ public class Q65_IsBalancedTree {
     private static boolean isBalanced = true;
 
     /**
-     * See also {@code Q64_TreeDepth()}
+     * See also {@link Q64_TreeDepth}
      */
     public static boolean isBalanced(TreeNode root) {
         getDepth(root);

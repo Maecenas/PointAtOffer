@@ -16,7 +16,7 @@ public class Q30_MirrorOfBinaryTree {
     }
 
     /**
-     * See also {@code Q07_TraversalOfBinaryTree.levelorder()}
+     * See also {@link Q07_TraversalOfBinaryTree#levelorder}
      */
     public static void mirrorIteratively(TreeNode<Integer> root) {
         if (root == null) return;

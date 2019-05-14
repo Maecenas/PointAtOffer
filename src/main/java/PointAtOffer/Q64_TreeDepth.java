@@ -17,8 +17,8 @@ public class Q64_TreeDepth {
 
     /**
      * BFS/ Level-order traversal
-     * See also {@code Q07_TraversalOfBinaryTree.levelorder()},
-     *          {@code Q35_PrintTreeInLines}
+     * See also {@link Q07_TraversalOfBinaryTree#levelorder},
+     *          {@link Q35_PrintTreeInLines}
      */
     public static int treeDepthIteratively(TreeNode root) {
         if (root == null) return 0;

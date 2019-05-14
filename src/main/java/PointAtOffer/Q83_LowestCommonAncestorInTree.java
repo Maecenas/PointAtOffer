@@ -42,7 +42,7 @@ public class Q83_LowestCommonAncestorInTree {
     }
 
     /**
-     * See also {@code Q59_FirstCommonNodesInLists}
+     * See also {@link Q59_FirstCommonNodesInLists}
      */
     public static TreeNodeWithParent<? extends Comparable> lowestCommonAncestorInBSTWithParent(
             TreeNodeWithParent<? extends Comparable> p,
@@ -66,8 +66,8 @@ public class Q83_LowestCommonAncestorInTree {
             final TreeNode<? extends Comparable> q) {
         if (root == null || root == p || root == q) return root;
 
-        TreeNode<?> left = lowestCommonAncestorRecursively(root.left, p, q);
-        TreeNode<?> right = lowestCommonAncestorRecursively(root.right, p, q);
+        TreeNode<? extends Comparable> left = lowestCommonAncestorRecursively(root.left, p, q);
+        TreeNode<? extends Comparable> right = lowestCommonAncestorRecursively(root.right, p, q);
         return right == null ? left : left == null ? right : root;
     }
 

@@ -25,7 +25,7 @@ public class Q31_SymmetricalBinaryTree {
     }
 
     /**
-     * See also {@code Q07_TraversalOfBinaryTree.levelorder()}
+     * See also {@link Q07_TraversalOfBinaryTree#levelorder}
      */
     public static boolean isSymmetricalIteratively(TreeNode root) {
         if (root == null) return true;
