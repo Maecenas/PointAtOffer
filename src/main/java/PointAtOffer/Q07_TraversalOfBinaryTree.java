@@ -53,39 +53,37 @@ public class Q07_TraversalOfBinaryTree {
     }
 
     public static List<Integer> preorderIteratively(TreeNode<Integer> node) {
-        List<Integer> list = new LinkedList<>();
+        List<Integer> list = new ArrayList<>();
         if (node == null) return list;
 
         Stack<TreeNode<Integer>> stack = new Stack<>();
-        TreeNode<Integer> curr = node;
 
-        while (curr != null || !stack.isEmpty()) {
-            if (curr != null) {
-                list.add(curr.val);  // Add before going to children
-                stack.push(curr);
-                curr = curr.left;
+        while (node != null || !stack.isEmpty()) {
+            if (node != null) {
+                list.add(node.val);  // Add before going to children
+                stack.push(node);
+                node = node.left;
             } else {
-                curr = stack.pop().right;
+                node = stack.pop().right;
             }
         }
         return list;
     }
 
     public static List<Integer> inorderIteratively(TreeNode<Integer> node) {
-        List<Integer> list = new LinkedList<>();
+        List<Integer> list = new ArrayList<>();
         if (node == null) return list;
 
         Stack<TreeNode<Integer>> stack = new Stack<>();
-        TreeNode<Integer> curr = node;
 
-        while (curr != null || !stack.isEmpty()) {
-            if (curr != null) {
-                stack.push(curr);
-                curr = curr.left;
+        while (node != null || !stack.isEmpty()) {
+            if (node != null) {
+                stack.push(node);
+                node = node.left;
             } else {
-                curr = stack.pop();
-                list.add(curr.val);  // Add after all left children
-                curr = curr.right;
+                node = stack.pop();
+                list.add(node.val);  // Add after all left children
+                node = node.right;
             }
         }
         return list;

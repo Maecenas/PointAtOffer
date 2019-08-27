@@ -57,4 +57,23 @@ public class Q06_PrintListInReversedOrder {
         }
         return ret;
     }
+
+    public List<Integer> printListFromTailToHead4(ListNode<Integer> node) {
+        if (node == null) return new ArrayList<>();
+
+        ListNode<Integer> prev = null, next;
+        while (node != null) {
+            next = node.next;
+            node.next = prev;
+            prev = node;
+            node = next;
+        }
+
+        final List<Integer> res = new ArrayList<>();
+        while (prev != null) {
+            res.add(prev.val);
+            prev = prev.next;
+        }
+        return res;
+    }
 }

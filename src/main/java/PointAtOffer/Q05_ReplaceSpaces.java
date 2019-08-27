@@ -4,9 +4,11 @@ public class Q05_ReplaceSpaces {
 
     public static String replaceBlank(StringBuilder str) {
         int P1 = str.length() - 1;
-        for (int i = 0; i <= P1; i++)
-            if (str.charAt(i) == ' ')
+        for (int i = 0; i <= P1; i++) {
+            if (str.charAt(i) == ' ') {
                 str.append("  ");
+            }
+        }
 
         int P2 = str.length() - 1;
         while (P1 >= 0 && P2 > P1) {
