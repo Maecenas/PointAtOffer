@@ -19,7 +19,10 @@ public class Q09_NextNodeInBinaryTrees {
         if (node == null) return null;
 
         if (node.right != null) {
-            return node.right;
+            while (node.left != null) {
+                node = node.left;
+            }
+            return node;
         } else {
             while (node.parent != null) {
                 TreeNode parent = node.parent;
